@@ -1,3 +1,4 @@
+#Many paths should be edited
 def create_video(text_list:list,audio_list:list):
   if len(text_list) != len(audio_list): raise Exception("Audio and texts do not have the same length")
   from moviepy.editor import AudioFileClip,VideoFileClip,concatenate_videoclips,CompositeVideoClip,TextClip
@@ -42,14 +43,11 @@ def create_video(text_list:list,audio_list:list):
     del texts,text,seperated_text
     clip = CompositeVideoClip([clip,txt_clip])
     clip_list.append(clip)
-    #Puts audio clips together
-    #audio_clip = moviepy.concatenate_audioclips([audio_clip])
     clip_list.append(transition)
   video = concatenate_videoclips([clip,transition])
   #Adds outro
   outro = VideoFileClip("L:\Code\AutomaticVideoMaker\VideoElements\\Outro.mp4")
   clip_list.append(outro)
   video = concatenate_videoclips(clip_list)
-  #video = moviepy.CompositeVideoClip([video],use_bgclip=True)
   #Exports file
   video.write_videofile("L:\Code\AutomaticVideoMaker\VideoElements\\Videoresult.mp4",threads = 8,fps = 30,logger = None , verbose = False)
